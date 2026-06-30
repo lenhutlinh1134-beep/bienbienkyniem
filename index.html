@@ -32,7 +32,10 @@
             </div>
           </div>
 
-          <button id="btn-open-book" class="btn-open"><i class="fa-solid fa-book-open"></i> Mở photobook</button>
+          <div style="display: flex; gap: 15px; justify-content: center;">
+            <button id="btn-open-book" class="btn-open"><i class="fa-solid fa-book-open"></i> Mở photobook</button>
+            <button id="btn-copy-link" class="btn-open" style="background: rgba(255,255,255,0.1); border: 1px solid var(--c-accent-light); color: var(--c-accent-light);" onclick="navigator.clipboard.writeText('https://lenhutlinh1134-beep.github.io/bienbienkyniem/'); alert('Đã sao chép link! Bạn hãy dán qua Zalo/Messenger để gửi sang Laptop nhé!');"><i class="fa-solid fa-copy"></i> Sao chép Link</button>
+          </div>
         </div>
       </div>
     </div>
