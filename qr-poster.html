@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Poster - Memory Book</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-main: #f9f1e6;
+      --bg-paper: #fdfaf5;
+      --text-dark: #2a221b;
+      --accent: #d3a778;
+      --red-accent: #c95c5c;
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0; padding: 0;
+      background-color: #333;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .poster-wrapper {
+      width: 200mm; height: 200mm;
+      background-color: var(--bg-main);
+      background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      color: var(--text-dark);
+      overflow: hidden;
+    }
+    
+    /* Typography Header */
+    .title-small {
+      position: absolute; top: 10mm; left: 50%; transform: translateX(-50%);
+      font-family: 'Caveat', cursive; font-size: 8mm; color: var(--text-dark);
+      display: flex; align-items: center; gap: 3mm; z-index: 20;
+    }
+    .title-small .lines { color: var(--red-accent); font-size: 5mm; opacity: 0.8; }
+    
+    .title-large {
+      position: absolute; top: 20mm; left: 50%; transform: translateX(-50%);
+      font-family: 'Caveat', cursive; font-size: 14mm; font-weight: 700;
+      color: var(--text-dark); z-index: 20; white-space: nowrap;
+    }
+    
+    /* Stamp */
+    .stamp {
+      position: absolute; top: 35mm; right: 15mm;
+      width: 35mm; height: 35mm;
+      border: 0.5mm double #b49b7e; border-radius: 50%;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      transform: rotate(15deg); color: #8e7355;
+      font-family: 'Inter', sans-serif; font-size: 3mm; font-weight: 600;
+      z-index: 20; background: rgba(249, 241, 230, 0.5);
+    }
+    .stamp span { letter-spacing: 0.5mm; }
+    .stamp .bold { font-size: 4.5mm; font-weight: 700; margin: 1mm 0; }
+    
+    /* Central Torn Paper & QR */
+    .center-paper {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 110mm; height: 110mm;
+      background: var(--bg-paper);
+      box-shadow: 2px 5px 20px rgba(0,0,0,0.15);
+      z-index: 10;
+      border: 1px solid #e0d5c1;
+    }
+    /* Top Tape on QR paper */
+    .center-paper .tape-top {
+      position: absolute; top: -6mm; left: 50%; transform: translateX(-50%) rotate(-1deg);
+      width: 35mm; height: 12mm;
+      background-color: rgba(220, 205, 175, 0.95);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1); z-index: 15;
+    }
+    
+    .qr-image {
+      position: absolute; top: 6mm; left: 6mm; right: 6mm; bottom: 6mm;
+      width: calc(100% - 12mm); height: calc(100% - 12mm);
+      object-fit: contain; mix-blend-mode: multiply;
+    }
+    /* We keep the real photo instead of the 'B' text as requested */
+    .qr-center-avatar {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 25mm; height: 25mm;
+      border-radius: 50%; border: 1mm solid var(--bg-paper);
+      overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 11;
+    }
+    .qr-center-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    
+    /* Polaroids */
+    .polaroid {
+      background: #fff; padding: 3mm 3mm 10mm 3mm;
+      box-shadow: 1px 3px 10px rgba(0,0,0,0.15);
+      position: absolute; z-index: 5;
+    }
+    .polaroid img { width: 100%; height: 40mm; object-fit: cover; filter: sepia(0.1) contrast(1.1); }
+    .polaroid .caption { 
+      font-family: 'Caveat', cursive; font-size: 5mm; 
+      text-align: center; margin-top: 3mm; color: var(--text-dark); 
+    }
+    .tape {
+      position: absolute; width: 15mm; height: 5mm;
+      background-color: rgba(220, 205, 175, 0.9);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.15); z-index: 6;
+    }
+    
+    /* Position specific polaroids */
+    .p-left { width: 50mm; top: 80mm; left: 5mm; transform: rotate(-5deg); }
+    .p-left .tape { top: -2mm; left: 50%; transform: translateX(-50%) rotate(2deg); }
+    
+    .p-right { width: 45mm; top: 115mm; right: 5mm; transform: rotate(4deg); }
+    .p-right .tape { top: -2mm; left: 50%; transform: translateX(-50%) rotate(-3deg); }
+    
+    /* Bottom Texts */
+    .text-bl {
+      position: absolute; bottom: 15mm; left: 15mm;
+      font-family: 'Caveat', cursive; font-size: 5.5mm; line-height: 1.2;
+      color: var(--text-dark); z-index: 10; text-align: center;
+    }
+    
+    .text-br {
+      position: absolute; bottom: 15mm; right: 15mm;
+      font-family: 'Caveat', cursive; font-size: 5.5mm; line-height: 1.2;
+      color: var(--text-dark); z-index: 10; text-align: center;
+    }
+
+    .text-bm {
+      position: absolute; bottom: 12mm; left: 50%; transform: translateX(-50%);
+      text-align: center; z-index: 10;
+    }
+    .text-bm .year { font-family: 'Caveat', cursive; font-size: 6mm; color: var(--text-dark); margin-bottom: 2mm;}
+    .text-bm .name-pill {
+      background: #333; color: #fff; font-family: 'Caveat', cursive; font-size: 6mm;
+      padding: 1mm 10mm; border-radius: 20mm; transform: rotate(-2deg);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    /* Doodles & Deco */
+    .deco { position: absolute; opacity: 0.6; color: #bba383; z-index: 2; font-size: 5mm; }
+    
+    /* Print Utility */
+    .print-btn {
+      position: fixed; top: 20px; right: 20px;
+      padding: 15px 25px; background: #8e6c51; color: white;
+      border: none; border-radius: 30px; font-family: 'Inter'; font-weight: bold;
+      cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 100;
+    }
+    .print-btn:hover { background: #6b4d37; }
+    
+    @media print {
+      body { background: none; }
+      .print-btn { display: none; }
+      .poster-wrapper { 
+        box-shadow: none; 
+        -webkit-print-color-adjust: exact; 
+        print-color-adjust: exact; 
+      }
+      @page {
+        size: A4 portrait;
+        margin: 5mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()"><i class="fa-solid fa-print"></i> In Poster Này</button>
+
+  <div class="poster-wrapper">
+    
+    <!-- Doodles -->
+    <i class="fa-solid fa-heart deco" style="top: 15mm; right: 40mm; font-size: 6mm; color: var(--red-accent); opacity: 0.8; transform: rotate(15deg);"></i>
+    <i class="fa-regular fa-heart deco" style="top: 55mm; left: 15mm; font-size: 6mm; transform: rotate(-15deg);"></i>
+    <i class="fa-regular fa-heart deco" style="top: 75mm; left: 28mm; font-size: 4mm; transform: rotate(10deg);"></i>
+    
+    <i class="fa-solid fa-paper-plane deco" style="top: 85mm; right: 20mm; font-size: 6mm; transform: rotate(-15deg);"></i>
+    <i class="fa-solid fa-star deco" style="top: 75mm; right: 15mm; font-size: 4mm; transform: rotate(20deg);"></i>
+    <i class="fa-regular fa-star deco" style="top: 105mm; right: 35mm; font-size: 4mm; transform: rotate(-10deg);"></i>
+    
+    <i class="fa-brands fa-pagelines deco" style="bottom: 35mm; left: 15mm; font-size: 8mm; transform: rotate(45deg);"></i>
+    <i class="fa-brands fa-pagelines deco" style="bottom: 25mm; right: 45mm; font-size: 8mm; transform: rotate(-30deg);"></i>
+    
+    <i class="fa-solid fa-microscope deco" style="bottom: 10mm; left: 45mm; font-size: 15mm; color: #444; opacity: 0.8;"></i>
+
+    <!-- Header -->
+    <div class="title-small">
+      <span class="lines"><i class="fa-solid fa-minus" style="transform: rotate(-30deg);"></i><i class="fa-solid fa-minus" style="transform: rotate(30deg); margin-top: 5mm;"></i></span>
+      Quét mã để mở
+      <i class="fa-regular fa-heart" style="color: var(--red-accent); font-size: 6mm; opacity: 0.8;"></i>
+    </div>
+    
+    <div class="title-large">
+      kỷ niệm của chúng ta
+      <div style="position: absolute; bottom: 1mm; left: 0; width: 100%; height: 2mm; background: var(--red-accent); opacity: 0.3; border-radius: 50%; transform: rotate(-1deg);"></div>
+    </div>
+
+    <!-- Stamp -->
+    <div class="stamp">
+      <span style="font-size: 2mm;">A GRADUATION</span>
+      <span class="bold">GIFT</span>
+      <span style="font-size: 2mm;">for <i class="fa-regular fa-heart"></i></span>
+      <span class="bold" style="font-size: 3.5mm; letter-spacing: 1px;">BIỂN</span>
+    </div>
+
+    <!-- Center QR Paper -->
+    <div class="center-paper">
+      <div class="tape-top"></div>
+      <!-- REPLACE URL IN DATA ATTRIBUTE BEFORE PRINTING -->
+      <img class="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&data=https://memory-book-thanh-xuan.vercel.app" alt="QR Code">
+      <div class="qr-center-avatar">
+        <!-- Kept the real photo as requested earlier -->
+        <img src="/images/END (2).jpg" alt="Center">
+      </div>
+    </div>
+
+    <!-- Left Polaroid -->
+    <div class="polaroid p-left">
+      <div class="tape"></div>
+      <img src="/images/z7993552569688_49e26f9f73f012372c4edfff8badcfc4.jpg" alt="Ảnh 1">
+      <div class="caption">DH22XET03 <i class="fa-regular fa-heart" style="color: var(--red-accent);"></i></div>
+    </div>
+
+    <!-- Right Polaroid -->
+    <div class="polaroid p-right">
+      <div class="tape"></div>
+      <img src="/images/NEW (8).jpg" alt="Ảnh 2">
+      <div class="caption">Thanh xuân <i class="fa-regular fa-heart" style="color: var(--red-accent);"></i></div>
+    </div>
+
+    <!-- Notes -->
+    <div class="text-bl">
+      Từng khoảnh khắc<br>đều đáng nhớ
+      <div style="width: 100%; height: 1.5mm; background: var(--red-accent); opacity: 0.4; border-radius: 50%; margin-top: 1mm; transform: rotate(1deg);"></div>
+      <i class="fa-regular fa-heart" style="position: absolute; bottom: -5mm; right: -5mm; color: var(--red-accent); font-size: 5mm;"></i>
+    </div>
+    
+    <div class="text-br">
+      Cảm ơn cậu <i class="fa-regular fa-heart" style="color: var(--red-accent);"></i><br>vì đã là một phần<br>thanh xuân của tớ !
+      <i class="fa-regular fa-heart" style="position: absolute; bottom: -2mm; right: -2mm; color: var(--red-accent); font-size: 4mm;"></i>
+    </div>
+
+    <!-- Bottom Center Text -->
+    <div class="text-bm">
+      <div class="year">2022 - 2026 <i class="fa-regular fa-heart" style="color: var(--accent); font-size: 4mm;"></i></div>
+      <div class="name-pill">- Lê Nhựt Linh -</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
