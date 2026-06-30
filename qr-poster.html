@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>QR Poster - Memory Book</title>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Dancing+Script:wght@400;600;700&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -36,15 +36,15 @@
     
     /* Typography Header */
     .title-small {
-      position: absolute; top: 10mm; left: 50%; transform: translateX(-50%);
-      font-family: 'Caveat', cursive; font-size: 8mm; color: var(--text-dark);
+      position: absolute; top: 12mm; left: 50%; transform: translateX(-50%);
+      font-family: 'Dancing Script', cursive; font-size: 8mm; color: var(--text-dark);
       display: flex; align-items: center; gap: 3mm; z-index: 20;
     }
     .title-small .lines { color: var(--red-accent); font-size: 5mm; opacity: 0.8; }
     
     .title-large {
-      position: absolute; top: 20mm; left: 50%; transform: translateX(-50%);
-      font-family: 'Caveat', cursive; font-size: 14mm; font-weight: 700;
+      position: absolute; top: 22mm; left: 50%; transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive; font-size: 16mm; font-weight: 400;
       color: var(--text-dark); z-index: 20; white-space: nowrap;
     }
     
@@ -214,24 +214,24 @@
     <div class="center-paper">
       <div class="tape-top"></div>
       <!-- REPLACE URL IN DATA ATTRIBUTE BEFORE PRINTING -->
-      <img class="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&data=https://memory-book-thanh-xuan.vercel.app" alt="QR Code">
+      <img class="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&data=https://lenhutlinh1134-beep.github.io/bienbienkyniem/" alt="QR Code">
       <div class="qr-center-avatar">
         <!-- Kept the real photo as requested earlier -->
-        <img src="/images/END (2).jpg" alt="Center">
+        <img src="./images/END (2).jpg" alt="Center">
       </div>
     </div>
 
     <!-- Left Polaroid -->
     <div class="polaroid p-left">
       <div class="tape"></div>
-      <img src="/images/z7993552569688_49e26f9f73f012372c4edfff8badcfc4.jpg" alt="Ảnh 1">
+      <img src="./images/z7993552569688_49e26f9f73f012372c4edfff8badcfc4.jpg" alt="Ảnh 1">
       <div class="caption">DH22XET03 <i class="fa-regular fa-heart" style="color: var(--red-accent);"></i></div>
     </div>
 
     <!-- Right Polaroid -->
     <div class="polaroid p-right">
       <div class="tape"></div>
-      <img src="/images/NEW (8).jpg" alt="Ảnh 2">
+      <img src="./images/NEW (8).jpg" alt="Ảnh 2">
       <div class="caption">Thanh xuân <i class="fa-regular fa-heart" style="color: var(--red-accent);"></i></div>
     </div>
 
