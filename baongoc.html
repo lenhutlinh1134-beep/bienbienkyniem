@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Memory Book - BẢO NGỌC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Sriracha&family=Caveat:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script type="module" crossorigin src="./assets/main-D8r-AMS1.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-COVvoMKN.css">
+</head>
+<body>
+  <div id="landing-screen">
+    <div class="landing-bg">
+      <div class="landing-content">
+        <div class="title-block">
+          <p class="subtitle">A Graduation Gift for <i class="fa-regular fa-heart"></i></p>
+          <h1 class="main-title">BẢO NGỌC</h1>
+          <p class="years">2022 - 2026</p>
+          <p class="divider-text" style="margin-top: 30px;">from</p>
+          <h2 class="sender" style="font-family: var(--f-sans); font-size: 1.2rem; color: #ccc; letter-spacing: 2px;">LÊ NHỰT LINH <i class="fa-solid fa-heart" style="color: var(--c-accent-dark);"></i></h2>
+          
+          <div class="date-badge">26 . 07 . 2026</div>
+
+          <div class="qr-block">
+            <div class="qr-note">
+              <span class="handwriting">Quét mã để mở<br>những kỷ niệm của chúng ta nhé!</span>
+              <svg class="hand-arrow" viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M10,40 Q50,10 90,40 M80,25 L90,40 L70,45" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="qr-coaster">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MemoryBook" alt="QR Code">
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button id="btn-open-book" class="btn-open"><i class="fa-solid fa-book-open"></i> Mở photobook</button>
+            <button id="btn-copy-link" class="btn-open" style="background: rgba(255,255,255,0.1); border: 1px solid var(--c-accent-light); color: var(--c-accent-light);" onclick="navigator.clipboard.writeText(window.location.href); alert('Đã sao chép link! Bạn hãy dán qua Zalo/Messenger để gửi sang Laptop nhé!');"><i class="fa-solid fa-copy"></i> Sao chép Link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="book-screen" class="hidden">
+    <div class="book-controls">
+      <button id="btn-music" class="icon-btn light tooltip" data-tooltip="Nhạc nền">
+        <i class="fa-solid fa-music"></i>
+      </button>
+      <audio id="bg-music" loop>
+        <source src="./audio/background.mp4" type="audio/mp4">
+      </audio>
+      <audio id="page-flip-sound">
+        <source src="/audio/flip.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="wood-table-bg"></div>
+    <div class="sunlight-overlay"></div>
+
+    <div class="book-wrapper">
+      <div id="photobook">
+        <!-- SPREAD 1 -->
+        <div class="page">
+          <div class="page-content">
+            <div class="nav-bar">
+              <button class="icon-btn dark"><i class="fa-solid fa-bars"></i></button>
+            </div>
+            <div class="content-text">
+              <h3 class="script-title underline-drawn">Chào Bảo Ngọc, <i class="fa-regular fa-heart"></i></h3>
+              <p class="handwriting mt-4">Thế là chúng ta đã cùng nhau trải qua những tháng năm thanh xuân đẹp nhất.<br><br>Cảm ơn Ngọc vì đã luôn là một người bạn tuyệt vời!<br><br>Hy vọng rằng những kỷ niệm này sẽ luôn là một phần đẹp đẽ trong hành trình của Ngọc.</p>
+              <p class="handwriting mt-4">- Linh -</p>
+              <i class="fa-solid fa-plane doodle plane"></i>
+            </div>
+            <div class="page-number">1</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <div class="content-media" style="position: relative; width: 100%; height: 100%;">
+              <div class="polaroid-frame" style="width: 280px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); box-shadow: 2px 10px 20px rgba(0,0,0,0.3);">
+                <div class="tape top-center"></div>
+                
+                <p class="polaroid-caption" style="font-size: 1.5rem; margin-top: 10px;">Thanh xuân của chúng ta</p>
+              </div>
+            </div>
+            <div class="page-number">2</div>
+            <button class="nav-arrow next"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+
+        <!-- SPREAD 2 -->
+        <div class="page">
+          <div class="page-content">
+            <div class="nav-bar">
+              <button class="icon-btn dark"><i class="fa-solid fa-bars"></i></button>
+            </div>
+            <div class="content-text">
+              <h3 class="script-title" style="font-size: 2.2rem;">Lần đầu đi ăn</h3>
+              <p class="date-text">Cùng nhau</p>
+              <p class="handwriting mt-4">Bữa ăn đầu tiên của nhóm mình, rôm rả nói cười quên cả thời gian.</p>
+              <i class="fa-regular fa-face-smile doodle smile"></i>
+            </div>
+            <div class="page-number">3</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <div class="content-media" style="position: relative; width: 100%; height: 100%;">
+              <div class="polaroid-frame" style="width: 280px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-3deg); box-shadow: 2px 10px 20px rgba(0,0,0,0.3);">
+                <div class="tape top-left"></div>
+                
+                <p class="polaroid-caption" style="font-size: 1.5rem; margin-top: 10px;">Tuyệt vời</p>
+              </div>
+              <i class="fa-solid fa-arrow-turn-down doodle arrow-top-right"></i>
+            </div>
+            <div class="page-number">4</div>
+            <button class="nav-arrow next"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+
+        
+
+        <!-- SPREAD END -->
+        <div class="page">
+          <div class="page-content">
+            <div class="nav-bar">
+              <button class="icon-btn dark"><i class="fa-solid fa-bars"></i></button>
+            </div>
+            <div class="content-text center-all">
+              <h3 class="script-title lg" style="margin-bottom: 0;">The End <i class="fa-regular fa-heart"></i></h3>
+              <p class="handwriting mt-3 text-center" style="font-size: 1rem; line-height: 1.5;">
+                Cảm ơn Ngọc rất nhiều, mãi là bạn của nhau nha!<br>
+Tất cả đều do tự tay tao làm. Lúc làm cuốn sổ này cũng hoài niệm đủ thứ lắm...<br>
+Mong Ngọc sớm đạt được mục tiêu của mình nha!<br>
+Mong sau này có cơ hội ngồi học chung, trêu đùa và có thêm thật nhiều kỷ niệm mới cùng nhau nữa.<br><br>
+- Cảm ơn rất nhiều - <i class="fa-solid fa-heart" style="color: var(--c-accent-dark);"></i>
+              </p>
+              <div class="polaroid-frame" style="width: 180px; margin: 15px auto 0; transform: rotate(-2deg); box-shadow: 2px 10px 20px rgba(0,0,0,0.3);">
+                <div class="tape top-center"></div>
+                
+              </div>
+            </div>
+            <div class="page-number">5</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-content">
+            <div class="content-media" style="position: relative; width: 100%; height: 100%;">
+              <div class="polaroid-frame" style="width: 280px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); box-shadow: 2px 10px 20px rgba(0,0,0,0.3);">
+                <div class="tape top-center"></div>
+                
+                <p class="polaroid-caption" style="font-size: 1.5rem; margin-top: 10px;">Good luck! <i class="fa-regular fa-face-smile"></i></p>
+              </div>
+            </div>
+            <div class="page-number">6</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="rotate-prompt">
+    <div class="rotate-content">
+      <i class="fa-solid fa-mobile-screen"></i>
+      <p>Vui lòng xoay ngang màn hình điện thoại<br>để có trải nghiệm chân thực nhất.</p>
+    </div>
+  </div>
+
+</body>
+</html>
